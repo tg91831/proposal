@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Strategic Proposal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+    }
+    .serif {
+      font-family: 'Cormorant Garamond', serif;
+    }
+    .fade-in {
+      animation: fadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    canvas {
+      touch-action: none;
+    }
+  </style>
+</head>
+<body class="bg-[#0f0d0e] text-[#e8dfdf] min-h-screen flex items-center justify-center p-4 selection:bg-[#e0a899] selection:text-black">
+
+  <!-- Editorial Stationery Card -->
+  <main class="w-full max-w-xl bg-[#171415] border border-[#382b2d] rounded-2xl p-8 sm:p-11 shadow-[0_30px_70px_-20px_rgba(0,0,0,0.8)] relative overflow-hidden flex flex-col justify-between min-h-[600px]">
+    
+    <!-- Top Editorial Header -->
+    <header class="flex items-center justify-between text-[10px] tracking-[0.25em] uppercase font-medium pb-4 border-b border-[#2d2224] text-[#a89598]">
+      <span>Proposal </span>
+      <span id="slideCounter" class="tabular-nums text-[#d9a89d]">01 / 07</span>
+    </header>
+
+    <!-- Slide Content Area -->
+    <div id="deckContent" class="flex-1 flex flex-col justify-center py-3">
+
+      <!-- Slide 1: Cover Page -->
+      <section class="slide fade-in flex flex-col items-center text-center">
+        <p class="text-[10px] tracking-[0.3em] uppercase text-[#d9a89d] mb-4">Confidential Strategic Document</p>
+        <h1 class="serif text-3xl sm:text-4xl text-[#f5ebe8] font-normal leading-tight mb-4">
+          A Formal Proposal for the <br/><em class="italic text-[#e5b3a8]">Re-approval</em> of Us
+        </h1>
+        <div class="w-8 h-[1px] bg-[#543d41] my-2"></div>
+        <p class="text-[#a89598] text-xs sm:text-[13px] mb-8 max-w-sm leading-relaxed font-light mt-2">
+          An executive review of shared history, ongoing devotion across the distance, and the future terms of agreement.
+        </p>
+        <button onclick="nextSlide()" class="border border-[#d9a89d]/60 hover:bg-[#d9a89d] hover:text-[#171415] text-[#f5ebe8] text-[11px] tracking-[0.2em] uppercase px-7 py-3 rounded-full transition-all duration-300">
+          Open Document &rarr;
+        </button>
+      </section>
+
+      <!-- Slide 2: Market Dynamics -->
+      <section class="slide hidden flex-col">
+        <p class="text-[10px] tracking-[0.25em] uppercase text-[#d9a89d] mb-1">Section I</p>
+        <h2 class="serif text-2xl sm:text-3xl text-[#f5ebe8] font-normal mb-1">Executive Summary</h2>
+        <p class="text-[#a89598] text-xs mb-6 font-light">Current observations and operational realities across coordinates.</p>
+        
+        <div class="space-y-4">
+          <div class="border-l border-[#d9a89d]/40 pl-4 py-1">
+            <span class="text-[11px] tracking-wider uppercase text-[#d9a89d] block mb-1">01 &bull; Geographic Allocation</span>
+            <p class="text-[#cfc3c5] text-xs leading-relaxed font-light">Physical distance introduces logistical constraints, yet the data confirms no decline in romantic conviction.</p>
+          </div>
+          <div class="border-l border-[#d9a89d]/40 pl-4 py-1">
+            <span class="text-[11px] tracking-wider uppercase text-[#d9a89d] block mb-1">02 &bull; Resource Focus</span>
+            <p class="text-[#cfc3c5] text-xs leading-relaxed font-light">An ongoing audit confirms that thoughts, loyalty, and affection remain entirely concentrated on a single individual.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 3: Proven Milestones (Live Animated Counters) -->
+      <section class="slide hidden flex-col">
+        <p class="text-[10px] tracking-[0.25em] uppercase text-[#d9a89d] mb-1">Section II</p>
+        <h2 class="serif text-2xl sm:text-3xl text-[#f5ebe8] font-normal mb-1">Proven Milestones</h2>
+        <p class="text-[#a89598] text-xs mb-6 font-light">Quantitative review of relationship equity and synergy.</p>
+        
+        <div class="grid grid-cols-2 gap-3 text-center">
+          <div class="border border-[#2d2224] bg-[#1d191b] p-4 rounded-xl">
+            <div id="callHours" class="text-3xl font-normal text-[#e5b3a8] serif italic">0+</div>
+            <div class="text-[#968285] text-[10px] tracking-widest uppercase mt-1">Hours On facetime</div>
+          </div>
+          <div class="border border-[#2d2224] bg-[#1d191b] p-4 rounded-xl">
+            <div id="devotionRate" class="text-3xl font-normal text-[#e5b3a8] serif italic">0%</div>
+            <div class="text-[#968285] text-[10px] tracking-widest uppercase mt-1">Devotion Rate</div>
+          </div>
+          <div class="border border-[#2d2224] bg-[#1d191b] p-4 rounded-xl col-span-2">
+            <div class="text-2xl font-normal text-[#f5ebe8] serif italic">&infin;</div>
+            <div class="text-[#968285] text-[10px] tracking-widest uppercase mt-1">Endurance Across the Miles</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 4: The Core Problem -->
+      <section class="slide hidden flex-col">
+        <p class="text-[10px] tracking-[0.25em] uppercase text-[#d9a89d] mb-1">Section III</p>
+        <h2 class="serif text-2xl sm:text-3xl text-[#f5ebe8] font-normal mb-1">The Core Challenge</h2>
+        <p class="text-[#a89598] text-xs mb-5 font-light">Root cause analysis, personal accountability, and dedicated corrective actions.</p>
+        
+        <div class="space-y-3 text-xs text-[#cfc3c5] font-light">
+          <div class="border-l border-[#d9a89d]/40 pl-4 py-1">
+            <span class="text-[11px] tracking-wider uppercase text-[#d9a89d] block mb-1">01 &bull; Unintended Friction</span>
+            <p class="leading-relaxed">I recognize that past mistakes have caused hurt even when never intended. Acknowledging  and working on where I fell short is essential to our growth.</p>
+          </div>
+          <div class="border-l border-[#d9a89d]/40 pl-4 py-1">
+            <span class="text-[11px] tracking-wider uppercase text-[#d9a89d] block mb-1">02 &bull; Active Remediation & Pursuit</span>
+            <p class="leading-relaxed">I am committed to actively pursuing you every single day to demonstrate my complete transparent honesty, loyalty, and emotional safety through real actions.</p>
+          </div>
+          <div class="border-l border-[#d9a89d]/40 pl-4 py-1">
+            <span class="text-[11px] tracking-wider uppercase text-[#d9a89d] block mb-1">03 &bull; Unconditional Alignment</span>
+            <p class="leading-relaxed">My devotion towards you isn't passive; it comes with the dedication to listen deeper, protect what we have, and continuously choose you and only you.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 5: Strategic Advantages -->
+      <section class="slide hidden flex-col">
+        <p class="text-[10px] tracking-[0.25em] uppercase text-[#d9a89d] mb-1">Section IV</p>
+        <h2 class="serif text-2xl sm:text-3xl text-[#f5ebe8] font-normal mb-1">Guaranteed Deliverables</h2>
+        <p class="text-[#a89598] text-xs mb-5 font-light">Core commitments provided under the lifetime contract.</p>
+        
+        <ul class="space-y-3 text-xs text-[#cfc3c5] font-light">
+          <li class="flex items-start gap-3 border-b border-[#241c1d] pb-2.5">
+            <span class="text-[#d9a89d] serif text-base italic">i.</span>
+            <span><strong>Unwavering Alliance:</strong> Constant encouragement, attentive listening, and personal devotion.</span>
+          </li>
+          <li class="flex items-start gap-3 border-b border-[#241c1d] pb-2.5">
+            <span class="text-[#d9a89d] serif text-base italic">ii.</span>
+            <span><strong>High Resonance:</strong> Effortless wit, genuine comfort, and deep emotional safety.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-[#d9a89d] serif text-base italic">iii.</span>
+            <span><strong>Certainty:</strong> The continuous decision to choose you and love you every single day with or without rainbows and sunshines without any hesitation.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-[#d9a89d] serif text-base italic">iv.</span>
+            <span><strong>Constant Connection:</strong> A strict commitment to never shut you out when upset rather choosing transparent honest communication and returning to talk within 9 minutes.</span>
+          </li>
+        </ul>
+             </section>
+
+     <!-- Slide 6: Photographic Archive with Clickable Visual Cues -->
+      <section class="slide hidden flex-col">
+        <div class="flex items-center justify-between mb-1">
+          <p class="text-[10px] tracking-[0.25em] uppercase text-[#d9a89d]">Section V &bull; Archive</p>
+          <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-rose-950/50 border border-rose-500/30 text-rose-300 text-[9px] tracking-wider uppercase font-medium animate-pulse">
+            ✦ Click Photo to Open
+          </span>
+        </div>
+        <h2 class="serif text-2xl sm:text-3xl text-[#f5ebe8] font-normal mb-1">Photographic Evidence</h2>
+        <p class="text-[#a89598] text-[11px] mb-3 font-light">Visual documentation supporting mutual synergy and cherished memories.</p>
+        
+        <!-- 4-Grid Photo Gallery -->
+        <div class="grid grid-cols-2 gap-3 my-auto">
+          
+          <!-- Photo 1 -->
+          <div onclick="openPhotoModal('https://i.postimg.cc/7hMH9mbC/R.jpg', 'Exhibit A &bull; Favorite Moments', 'From the very beginning, every moment with you felt completely natural and easy. You make even the simplest days memorable. You make me the happiest, now it is my turn')" 
+               class="group relative cursor-pointer overflow-hidden rounded-xl border border-[#382b2d] hover:border-[#e5b3a8] bg-[#121011] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(229,179,168,0.18)]">
+            <img src="https://i.postimg.cc/7hMH9mbC/R.jpg" alt="Memory 1" class="w-full h-24 sm:h-28 object-cover object-center filter grayscale-[20%] group-hover:grayscale-0 transition-all duration-300" />
+            
+            <!-- Top Right Visual Tag -->
+            <div class="absolute top-2 right-2 bg-black/80 backdrop-blur-xs text-[#e5b3a8] border border-[#382b2d] rounded-md px-1.5 py-0.5 text-[8px] tracking-wider uppercase font-medium flex items-center gap-1 group-hover:border-[#e5b3a8] transition-colors">
+              <span>🔍 View Note</span>
+            </div>
+
+            <!-- Bottom Gradient Overlay -->
+            <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#121011]/95 via-[#121011]/70 to-transparent p-2 text-center">
+              <span class="text-[8px] tracking-widest uppercase text-[#e5b3a8] font-medium block">Exhibit A &bull; Favorite Moments</span>
+            </div>
+          </div>
+
+          <!-- Photo 2 -->
+          <div onclick="openPhotoModal('https://i.postimg.cc/br88ZkLp/A.jpg', 'Exhibit B &bull; Shared Laughter', 'No matter what kind of day I am having, hearing your laugh instantly resets everything. You are my safe place. Without you my life is dull so let me make your life a little bit more exciting and brighter.')" 
+               class="group relative cursor-pointer overflow-hidden rounded-xl border border-[#382b2d] hover:border-[#e5b3a8] bg-[#121011] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(229,179,168,0.18)]">
+            <img src="https://i.postimg.cc/br88ZkLp/A.jpg" alt="Memory 2" class="w-full h-24 sm:h-28 object-cover object-center filter grayscale-[20%] group-hover:grayscale-0 transition-all duration-300" />
+            
+            <div class="absolute top-2 right-2 bg-black/80 backdrop-blur-xs text-[#e5b3a8] border border-[#382b2d] rounded-md px-1.5 py-0.5 text-[8px] tracking-wider uppercase font-medium flex items-center gap-1 group-hover:border-[#e5b3a8] transition-colors">
+              <span>🔍 View Note</span>
+            </div>
+
+            <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#121011]/95 via-[#121011]/70 to-transparent p-2 text-center">
+              <span class="text-[8px] tracking-widest uppercase text-[#e5b3a8] font-medium block">Exhibit B &bull; Shared Laughter</span>
+            </div>
+          </div>
+
+          <!-- Photo 3 -->
+          <div onclick="openPhotoModal('https://i.postimg.cc/L4q0PnwC/I.jpg', 'Exhibit C &bull; Across the Miles', 'Distance only proved how strong this is. Miles mean so little when you mean this much to me .You are the love of my life for whom i can go beyond anything and everything.')" 
+               class="group relative cursor-pointer overflow-hidden rounded-xl border border-[#382b2d] hover:border-[#e5b3a8] bg-[#121011] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(229,179,168,0.18)]">
+            <img src="https://i.postimg.cc/L4q0PnwC/I.jpg" alt="Memory 3" class="w-full h-24 sm:h-28 object-cover object-center filter grayscale-[20%] group-hover:grayscale-0 transition-all duration-300" />
+            
+            <div class="absolute top-2 right-2 bg-black/80 backdrop-blur-xs text-[#e5b3a8] border border-[#382b2d] rounded-md px-1.5 py-0.5 text-[8px] tracking-wider uppercase font-medium flex items-center gap-1 group-hover:border-[#e5b3a8] transition-colors">
+              <span>🔍 View Note</span>
+            </div>
+
+            <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#121011]/95 via-[#121011]/70 to-transparent p-2 text-center">
+              <span class="text-[8px] tracking-widest uppercase text-[#e5b3a8] font-medium block">Exhibit C &bull; Across the Miles</span>
+            </div>
+          </div>
+
+          <!-- Photo 4 -->
+          <div onclick="openPhotoModal('https://i.postimg.cc/rpnQ0kJ4/M.jpg', 'Exhibit D &bull; Endless Devotion', 'Every day with you is a straight up answer cuz you are my one word answer I will always gladly write along my name.You are my one and only answer to my prayers so you are the one for me always forever.')" 
+               class="group relative cursor-pointer overflow-hidden rounded-xl border border-[#382b2d] hover:border-[#e5b3a8] bg-[#121011] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(229,179,168,0.18)]">
+            <img src="https://i.postimg.cc/rpnQ0kJ4/M.jpg" alt="Memory 4" class="w-full h-24 sm:h-28 object-cover object-center filter grayscale-[20%] group-hover:grayscale-0 transition-all duration-300" />
+            
+            <div class="absolute top-2 right-2 bg-black/80 backdrop-blur-xs text-[#e5b3a8] border border-[#382b2d] rounded-md px-1.5 py-0.5 text-[8px] tracking-wider uppercase font-medium flex items-center gap-1 group-hover:border-[#e5b3a8] transition-colors">
+              <span>🔍 View Note</span>
+            </div>
+
+            <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#121011]/95 via-[#121011]/70 to-transparent p-2 text-center">
+              <span class="text-[8px] tracking-widest uppercase text-[#e5b3a8] font-medium block">Exhibit D &bull; Endless Devotion</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Slide 7: The Final Term Sheet with Digital Signature -->
+      <section class="slide hidden flex-col items-center text-center">
+        <p class="text-[10px] tracking-[0.3em] uppercase text-[#d9a89d] mb-2">Final Article &bull; Consent Required</p>
+        <h2 class="serif text-3xl sm:text-4xl text-[#f5ebe8] font-normal mb-1 leading-tight">
+          Will you be my boyfriend <br/><em class="italic text-[#e5b3a8]">all over again?</em>
+        </h2>
+        <p class="text-[#a89598] text-[11px] mb-3 max-w-sm font-light">
+          Sign below using your finger or mouse to ratify the agreement.
+        </p>
+
+        <!-- Digital Signature Pad Box -->
+        <div id="proposalActions" class="flex flex-col items-center w-full max-w-xs">
+          <div class="w-full border border-[#382b2d] bg-[#121011] rounded-xl p-2 mb-2 relative">
+            <canvas id="sigCanvas" width="280" height="90" class="w-full bg-[#121011] rounded-lg cursor-crosshair"></canvas>
+            <span id="sigPlaceholder" class="absolute inset-0 flex items-center justify-center text-[10px] tracking-widest uppercase text-[#5a494c] pointer-events-none font-medium">Draw Signature Here</span>
+          </div>
+          <div class="flex items-center justify-between w-full text-[10px] text-[#7a6a6c] mb-3 px-1">
+            <button type="button" onclick="clearSignature()" class="hover:text-[#d9a89d] transition-colors uppercase tracking-wider">Clear</button>
+            <span class="italic text-[#a89598]">Authorized Signatory</span>
+          </div>
+
+          <div class="flex items-center justify-center gap-3 relative w-full h-12">
+            <button onclick="acceptProposal()" class="bg-[#d9a89d] hover:bg-[#e5b3a8] text-[#171415] font-medium text-xs tracking-wider uppercase px-7 py-2.5 rounded-full transition-all duration-200 hover:scale-105 active:scale-95 z-10 shadow-lg shadow-[#d9a89d]/10">
+              Accept & Ratify
+            </button>
+            <button id="noButton" onmouseenter="dodgeButton(this)" onclick="dodgeButton(this)" class="border border-[#382b2d] bg-[#171415] text-[#705e60] hover:text-[#a89598] text-xs px-4 py-2 rounded-full transition-all duration-150 absolute right-2">
+              Decline
+            </button>
+          </div>
+        </div>
+
+        <!-- Success Feedback State -->
+        <div id="successMessage" class="hidden text-center fade-in py-2">
+          <div class="serif italic text-3xl text-[#e5b3a8] mb-1">&hearts;</div>
+          <h3 class="serif text-2xl text-[#f5ebe8] font-normal mb-1">Contract Sealed in Ink</h3>
+          <p class="text-[#a89598] text-xs font-light">Signature recorded and confirmed. Please dial in for your celebration call.</p>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Navigation Footer Controls -->
+    <footer id="deckFooter" class="flex justify-between items-center pt-4 border-t border-[#2d2224]">
+      <button id="prevBtn" onclick="prevSlide()" class="text-[11px] tracking-wider uppercase text-[#7a6a6c] hover:text-[#d9a89d] transition-colors disabled:opacity-0 disabled:pointer-events-none">
+        &larr; Previous
+      </button>
+      <button id="nextBtn" onclick="nextSlide()" class="text-[11px] tracking-wider uppercase text-[#d9a89d] hover:text-[#e5b3a8] transition-colors">
+        Next &rarr;
+      </button>
+    </footer>
+
+    <!-- Interactive Photo Modal Pop-up -->
+    <div id="photoModal" onclick="closePhotoModal()" class="hidden fixed inset-0 bg-black/85 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+      <div onclick="event.stopPropagation()" class="bg-[#171415] border border-[#382b2d] rounded-2xl p-5 max-w-sm w-full shadow-2xl relative fade-in flex flex-col items-center text-center">
+        <button onclick="closePhotoModal()" class="absolute top-3 right-3 text-[#a89598] hover:text-[#f5ebe8] text-sm">&times;</button>
+        <img id="modalImg" src="" alt="Enlarged Memory" class="w-full max-h-52 object-cover rounded-xl border border-[#382b2d] mb-4" />
+        <h4 id="modalTitle" class="serif text-lg text-[#f5ebe8] mb-1"></h4>
+        <p id="modalNote" class="text-xs text-[#cfc3c5] font-light leading-relaxed"></p>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    const slideCounter = document.getElementById('slideCounter');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const deckFooter = document.getElementById('deckFooter');
+    let counterAnimated = false;
+
+    const NTFY_TOPIC = "proposal-alert-tanisha-2026";
+
+    // Animated counter on Slide 3
+    function animateCounters() {
+      if (counterAnimated) return;
+      counterAnimated = true;
+      let count = 0;
+      const targetHours = 100;
+      const timer = setInterval(() => {
+        count += 1;
+        if (count >= targetHours) {
+          document.getElementById('callHours').innerText = '1,00+';
+          document.getElementById('devotionRate').innerText = '100%';
+          clearInterval(timer);
+        } else {
+          document.getElementById('callHours').innerText = count + '+';
+          document.getElementById('devotionRate').innerText = Math.min(100, Math.floor((count / targetHours) * 100)) + '%';
+        }
+      }, 20);
+    }
+
+    function updateDeck() {
+      slides.forEach((slide, index) => {
+        if (index === currentSlide) {
+          slide.classList.remove('hidden');
+          slide.classList.add('flex', 'fade-in');
+        } else {
+          slide.classList.add('hidden');
+          slide.classList.remove('flex', 'fade-in');
+        }
+      });
+
+      slideCounter.innerText = `0${currentSlide + 1} / 0${totalSlides}`;
+      prevBtn.disabled = currentSlide === 0;
+
+      if (currentSlide === 0 || currentSlide === totalSlides - 1) {
+        nextBtn.style.visibility = 'hidden';
+      } else {
+        nextBtn.style.visibility = 'visible';
+      }
+
+      // Trigger animated counters when arriving on slide 3
+      if (currentSlide === 2) {
+        animateCounters();
+      }
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides - 1) {
+        currentSlide++;
+        updateDeck();
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        currentSlide--;
+        updateDeck();
+      }
+    }
+
+    // Modal popup logic
+    function openPhotoModal(src, title, note) {
+      document.getElementById('modalImg').src = src;
+      document.getElementById('modalTitle').innerHTML = title;
+      document.getElementById('modalNote').innerText = note;
+      document.getElementById('photoModal').classList.remove('hidden');
+    }
+
+    function closePhotoModal() {
+      document.getElementById('photoModal').classList.add('hidden');
+    }
+
+    function dodgeButton(btn) {
+      const randomX = (Math.random() - 0.5) * 180;
+      const randomY = (Math.random() - 0.5) * 70;
+      btn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+    }
+
+    // Digital Signature Pad Canvas Logic
+    const canvas = document.getElementById('sigCanvas');
+    const ctx = canvas.getContext('2d');
+    let isDrawing = false;
+    let hasSigned = false;
+
+    ctx.strokeStyle = '#e5b3a8';
+    ctx.lineWidth = 2;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+
+    function getPos(e) {
+      const rect = canvas.getBoundingClientRect();
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      return {
+        x: (clientX - rect.left) * (canvas.width / rect.width),
+        y: (clientY - rect.top) * (canvas.height / rect.height)
+      };
+    }
+
+    function startDraw(e) {
+      isDrawing = true;
+      hasSigned = true;
+      document.getElementById('sigPlaceholder').style.display = 'none';
+      const pos = getPos(e);
+      ctx.beginPath();
+      ctx.moveTo(pos.x, pos.y);
+      e.preventDefault();
+    }
+
+    function draw(e) {
+      if (!isDrawing) return;
+      const pos = getPos(e);
+      ctx.lineTo(pos.x, pos.y);
+      ctx.stroke();
+      e.preventDefault();
+    }
+
+    function stopDraw() {
+      isDrawing = false;
+    }
+
+    canvas.addEventListener('mousedown', startDraw);
+    canvas.addEventListener('mousemove', draw);
+    canvas.addEventListener('mouseup', stopDraw);
+    canvas.addEventListener('mouseleave', stopDraw);
+
+    canvas.addEventListener('touchstart', startDraw, { passive: false });
+    canvas.addEventListener('touchmove', draw, { passive: false });
+    canvas.addEventListener('touchend', stopDraw);
+
+    function clearSignature() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      document.getElementById('sigPlaceholder').style.display = 'flex';
+      hasSigned = false;
+    }
+
+    // Confetti and Acceptance Logic
+    function acceptProposal() {
+      document.getElementById('proposalActions').classList.add('hidden');
+      document.getElementById('successMessage').classList.remove('hidden');
+      deckFooter.classList.add('hidden');
+
+      const count = 180;
+      const defaults = { 
+        origin: { y: 0.7 },
+        colors: ['#e5b3a8', '#d9a89d', '#f5ebe8', '#c48b7f', '#ffffff']
+      };
+
+      function fire(particleRatio, opts) {
+        confetti(Object.assign({}, defaults, opts, {
+          particleCount: Math.floor(count * particleRatio)
+        }));
+      }
+
+      fire(0.25, { spread: 26, startVelocity: 45 });
+      fire(0.2, { spread: 60 });
+      fire(0.35, { spread: 100, decay: 0.92, scalar: 0.8 });
+      fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.1 });
+      fire(0.1, { spread: 120, startVelocity: 45 });
+
+      // Send the real-time notification to your phone
+      fetch(`https://ntfy.sh/${NTFY_TOPIC}`, {
+        method: 'POST',
+        body: 'He signed the contract and accepted the proposal! ❤️🥂',
+        headers: {
+          'Title': 'Proposal Signed & Approved!',
+          'Priority': 'high',
+          'Tags': 'tada,ring,heart'
+        }
+      }).catch(err => console.log('Notification sent'));
+    }
+
+    updateDeck();
+  </script>
+</body>
+</html>
